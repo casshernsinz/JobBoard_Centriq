@@ -1,6 +1,6 @@
 ﻿using Owin;
 
-namespace IdentitySample
+namespace JobBoard
 {
     public partial class Startup
     {

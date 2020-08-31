@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace IdentitySample
+namespace JobBoard
 {
     public class FilterConfig
     {
