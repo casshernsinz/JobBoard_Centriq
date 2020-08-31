@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobBoard.UI.MVC", "JobBoard.UI.MVC\JobBoard.UI.MVC.csproj", "{2C5A088D-1680-4AFD-AD60-C63832D93FFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobBoard.DATA.MVC", "JobBoard.DATA.MVC\JobBoard.DATA.MVC.csproj", "{86726551-19C0-49D7-B365-1B0D41AAAE65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2C5A088D-1680-4AFD-AD60-C63832D93FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C5A088D-1680-4AFD-AD60-C63832D93FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C5A088D-1680-4AFD-AD60-C63832D93FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86726551-19C0-49D7-B365-1B0D41AAAE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86726551-19C0-49D7-B365-1B0D41AAAE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86726551-19C0-49D7-B365-1B0D41AAAE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86726551-19C0-49D7-B365-1B0D41AAAE65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
