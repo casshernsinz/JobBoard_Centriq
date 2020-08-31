@@ -48,27 +48,19 @@
                         <ul>
                             <li class="active">@Html.ActionLink("Home","Index","Home")</li>
                             <li>@Html.ActionLink("About","About","Home")</li>
-                            <li><a href="job-category.html">category</a></li>
+                            <li><a href="#">category</a></li>
+                            <li><a href="#">contact</a></li>
                             <li>
-                                <a href="#">blog</a>
+                                <a href="#">jobs</a>
                                 <ul class="sub-menu">
-                                    <li><a href="blog-home.html">Blog Home</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact-us.html">contact</a></li>
-                            <li>
-                                <a href="#">pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="job-search.html">Job Search</a></li>
-                                    <li><a href="job-single.html">Job Single</a></li>
-                                    <li><a href="pricing-plan.html">Pricing Plan</a></li>
-                                    <li><a href="elements.html">Elements</a></li>
+                                    <li><a href="#">Job Search</a></li>
+                                    <li><a href="#">Job Single</a></li>
+                                    <li><a href="#">Pricing Plan</a></li>
+                                    <li><a href="#">Elements</a></li>
                                 </ul>
                             </li>
                             <li class="menu-btn">
-                                <a href="@Url.Action("Login","Account")">login</a>
-                                <a href="#" class="template-btn">sign up</a>
+                                @Html.Partial("_LoginPartial")
                             </li>
                         </ul>
                     </div>
