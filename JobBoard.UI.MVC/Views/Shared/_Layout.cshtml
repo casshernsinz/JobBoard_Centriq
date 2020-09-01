@@ -47,27 +47,34 @@
                     <div class="main-menu">
                         @Html.Partial("_LoginPartial")
                         <ul>
-                            <li class="active">@Html.ActionLink("Home","Index","Home")</li>
-                            <li>@Html.ActionLink("About","About","Home")</li>
+                            <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li><a href="#">category</a></li>
-                            <li><a href="#">contact</a></li>
-                            <li>
-                                <a href="#">jobs</a>
-                                <ul class="sub-menu">
-                                    <li><a href="#">Job Search</a></li>
-                                    <li><a href="#">Job Single</a></li>
-                                    <li><a href="#">Pricing Plan</a></li>
-                                    <li><a href="#">Elements</a></li>
-                                </ul>
-                            </li>
-                            @*<li class="menu-btn">
-                                @Html.Partial("_LoginPartial")
-                            </li>*@
+                            <li>@Html.ActionLink("contact", "Contact", "Home")</li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>
+                                    <a href="#">jobs</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="#">Job Search</a></li>
+                                        <li><a href="#">Job Single</a></li>
+                                        <li><a href="#">Pricing Plan</a></li>
+                                        <li><a href="#">Elements</a></li>
+                                    </ul>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        @if (IsSectionDefined("ContactTitle"))
+        {
+            @RenderSection("ContactTitle")
+        }else if (IsSectionDefined("AboutHeader"))
+        {
+            @RenderSection("AboutHeader")
+        }
     </header>
     <!-- Header Area End -->
     @RenderBody()
@@ -147,7 +154,9 @@
     <script src="~/Content/js/vendor/wow.min.js"></script>
     <script src="~/Content/js/vendor/owl-carousel.min.js"></script>
     <script src="~/Content/js/vendor/jquery.nice-select.min.js"></script>
-    <script src="~/Content/js/vendor/ion.rangeSlider.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I"></script>
+    <script src="assets/js/vendor/gmaps.min.js"></script>
+    <script src="assets/js/vendor/ion.rangeSlider.js"></script>
     <script src="~/Content/js/main.js"></script>
 </body>
 </html>
