@@ -9,7 +9,6 @@
 <h3>Are you sure you want to delete this Role? </h3>
 <p>Deleting this Role will remove all users from this role. It will not delete the users.</p>
 <div>
-    <h4>Role.</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,8 +24,15 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @if (Model.Name == "Admin")
+            {
+                @Html.Display("YOU CANNOT DELETE THE ADMIN USE")
+                @Html.ActionLink("Back to List", "Index")
+            }
+            else if (Model.Name != "Admin")
+            {
+                <input type="submit" value="Delete" class="btn btn-default" />
+            }
         </div>
     }
 </div>

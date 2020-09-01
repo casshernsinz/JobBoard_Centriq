@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="~/Content/css/owl-carousel.min.css">
     <link rel="stylesheet" href="~/Content/css/nice-select.css">
     <link rel="stylesheet" href="~/Content/css/style.css">
+
+    
 </head>
 <body>
     <!-- Preloader Starts -->
@@ -59,7 +61,7 @@
                                         <li>@Html.ActionLink("Users", "Index", "UsersAdmin")
                                         <li>@Html.ActionLink("Add Roles", "Index", "RolesAdmin")</li>
                                         <li>@Html.ActionLink("Applications", "Index", "UserDetails")</li>
-                                        @*<li>@Html.ActionLink()</li>*@
+                                        <li>@Html.ActionLink("Company Positions", "Index", "Positions")</li>
                                     </ul>
                                 </li>
                             }
@@ -69,6 +71,7 @@
                                     <a href="#">management functions</a>
                                     <ul class="sub-menu">
                                         <li>@Html.ActionLink("Applications", "Index", "UserDetails")</li>
+                                        <li>@Html.ActionLink("Company Positions", "Index", "Positions")</li>
                                     </ul>
                                 </li>
                             }
@@ -172,5 +175,8 @@
     <script src="assets/js/vendor/gmaps.min.js"></script>
     <script src="assets/js/vendor/ion.rangeSlider.js"></script>
     <script src="~/Content/js/main.js"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
