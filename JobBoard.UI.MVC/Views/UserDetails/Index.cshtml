@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<JobBoard.DATA.MVC.UserDetail>
 
 @{
-    ViewBag.Title = "Applicants";
+    ViewBag.Title = "Applicant Details";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -13,6 +13,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ResumeFileName)

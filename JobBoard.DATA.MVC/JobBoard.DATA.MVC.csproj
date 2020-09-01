@@ -74,6 +74,7 @@
     <Compile Include="Location.cs">
       <DependentUpon>JobBoard_MetaData.tt</DependentUpon>
     </Compile>
+    <Compile Include="MetaData\JobBoard.MetaData.cs" />
     <Compile Include="OpenPosition.cs">
       <DependentUpon>JobBoard_MetaData.tt</DependentUpon>
     </Compile>
@@ -114,8 +115,6 @@
       <LastGenOutput>JobBoard_MetaData.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MetaData\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
