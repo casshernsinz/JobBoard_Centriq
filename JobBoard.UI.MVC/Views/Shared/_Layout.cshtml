@@ -56,10 +56,19 @@
                                 <li>
                                     <a href="#">admin functions</a>
                                     <ul class="sub-menu">
-                                        <li>@Html.ActionLink("Users","Index","UsersAdmin")
-                                        <li>@Html.ActionLink("Add Roles", "Index","RolesAdmin")</li>
-                                        <li><a href="#">Pricing Plan</a></li>
-                                        <li><a href="#">Elements</a></li>
+                                        <li>@Html.ActionLink("Users", "Index", "UsersAdmin")
+                                        <li>@Html.ActionLink("Add Roles", "Index", "RolesAdmin")</li>
+                                        <li>@Html.ActionLink("Applications", "Index", "UserDetails")</li>
+                                        @*<li>@Html.ActionLink()</li>*@
+                                    </ul>
+                                </li>
+                            }
+                            else if (User.IsInRole("Management"))
+                            {
+                                <li>
+                                    <a href="#">management functions</a>
+                                    <ul class="sub-menu">
+                                        <li>@Html.ActionLink("Applications", "Index", "UserDetails")</li>
                                     </ul>
                                 </li>
                             }
