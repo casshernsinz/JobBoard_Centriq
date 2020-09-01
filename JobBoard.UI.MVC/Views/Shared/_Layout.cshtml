@@ -54,10 +54,10 @@
                             @if (User.IsInRole("Admin"))
                             {
                                 <li>
-                                    <a href="#">jobs</a>
+                                    <a href="#">admin functions</a>
                                     <ul class="sub-menu">
-                                        <li><a href="#">Job Search</a></li>
-                                        <li><a href="#">Job Single</a></li>
+                                        <li>@Html.ActionLink("Users","Index","UsersAdmin")
+                                        <li>@Html.ActionLink("Add Roles", "Index","RolesAdmin")</li>
                                         <li><a href="#">Pricing Plan</a></li>
                                         <li><a href="#">Elements</a></li>
                                     </ul>

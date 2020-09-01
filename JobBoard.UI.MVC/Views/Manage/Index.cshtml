@@ -8,6 +8,7 @@
     <p class="text-success">@ViewBag.StatusMessage</p>
     <div class="row">
         <div class="col-md-8">
+            <h3 style="font-style:italic">@User.Identity.Name</h3>
             <p>
                 @(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword")
                 : Html.ActionLink("Pick a password", "SetPassword"))
