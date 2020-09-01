@@ -71,13 +71,18 @@
         @if (IsSectionDefined("ContactTitle"))
         {
             @RenderSection("ContactTitle")
-        }else if (IsSectionDefined("AboutHeader"))
+        }
+        else if (IsSectionDefined("AboutHeader"))
         {
             @RenderSection("AboutHeader")
         }
     </header>
     <!-- Header Area End -->
-    @RenderBody()
+    <!--MainContent-->
+    <div style="padding-left:2em;padding-right:2em">
+        @RenderBody()
+    </div>
+    <!--End of Main-->
     <!-- Footer Area Starts -->
     <footer class="footer-area section-padding">
         <div class="footer-widget">
