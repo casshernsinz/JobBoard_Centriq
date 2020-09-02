@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -10,107 +10,116 @@ using JobBoard.DATA.MVC;
 
 namespace JobBoard.UI.MVC.Controllers
 {
-    public class PositionsController : Controller
+    public class OpenPositionsController : Controller
     {
         private Job_Board_Entities db = new Job_Board_Entities();
 
-        // GET: Positions
+        // GET: OpenPositions
         public ActionResult Index()
         {
-            return View(db.Positions.ToList());
+            var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
+            return View(openPositions.ToList());
         }
 
-        // GET: Positions/Details/5
+        // GET: OpenPositions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Positions.Find(id);
-            if (position == null)
+            OpenPosition openPosition = db.OpenPositions.Find(id);
+            if (openPosition == null)
             {
                 return HttpNotFound();
             }
-            return View(position);
+            return View(openPosition);
         }
 
-        // GET: Positions/Create
+        // GET: OpenPositions/Create
         public ActionResult Create()
         {
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber");
+            ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title");
             return View();
         }
 
-        // POST: Positions/Create
+        // POST: OpenPositions/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PositionId,Title,JobDescription,Category,IsOpen")] Position position)
+        public ActionResult Create([Bind(Include = "OpenPositionId,LocationId,PositionId")] OpenPosition openPosition)
         {
             if (ModelState.IsValid)
             {
-                db.Positions.Add(position);
+                db.OpenPositions.Add(openPosition);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(position);
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
+            return View(openPosition);
         }
 
-        // GET: Positions/Edit/5
+        // GET: OpenPositions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Positions.Find(id);
-            if (position == null)
+            OpenPosition openPosition = db.OpenPositions.Find(id);
+            if (openPosition == null)
             {
                 return HttpNotFound();
             }
-            return View(position);
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
+            return View(openPosition);
         }
 
-        // POST: Positions/Edit/5
+        // POST: OpenPositions/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PositionId,Title,JobDescription,Category,IsOpen")] Position position)
+        public ActionResult Edit([Bind(Include = "OpenPositionId,LocationId,PositionId")] OpenPosition openPosition)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(position).State = EntityState.Modified;
+                db.Entry(openPosition).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(position);
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
+            return View(openPosition);
         }
 
-        // GET: Positions/Delete/5
+        // GET: OpenPositions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Position position = db.Positions.Find(id);
-            if (position == null)
+            OpenPosition openPosition = db.OpenPositions.Find(id);
+            if (openPosition == null)
             {
                 return HttpNotFound();
             }
-            return View(position);
+            return View(openPosition);
         }
 
-        // POST: Positions/Delete/5
+        // POST: OpenPositions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Position position = db.Positions.Find(id);
-            db.Positions.Remove(position);
+            OpenPosition openPosition = db.OpenPositions.Find(id);
+            db.OpenPositions.Remove(openPosition);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

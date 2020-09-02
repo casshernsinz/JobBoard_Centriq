@@ -27,11 +27,28 @@
             @Html.DisplayFor(model => model.JobDescription)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOpen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOpen)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
+        <br />
+        <br />
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
