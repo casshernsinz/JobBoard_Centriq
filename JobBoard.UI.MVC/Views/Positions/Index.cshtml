@@ -23,14 +23,14 @@
         <th>
             @Html.DisplayNameFor(model => model.Category)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.OpenPositions)
-        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.LocationId)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.IsOpen)
         </th>
         <th></th>
-</tr>
+    </tr>
 
     @foreach (var item in Model)
     {
@@ -44,9 +44,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.OpenPositions)
-            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsOpen)
             </td>
