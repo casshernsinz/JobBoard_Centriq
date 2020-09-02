@@ -13,7 +13,7 @@ namespace JobBoard.DATA.MVC//.MetaData
         public int ApplicationId { get; set; }
         public string UserId { get; set; }
         public int OpenPositionId { get; set; }
-        public System.DateTime ApplicationDate { get; set; }
+        public DateTime ApplicationDate { get; set; }
         public string ManagerNotes { get; set; }
         public int ApplicationStatusId { get; set; }
         public string ResumeFileName { get; set; }
@@ -39,6 +39,8 @@ namespace JobBoard.DATA.MVC//.MetaData
         #endregion
     }
 
+    [MetadataType(typeof(OpenPositionMetadata))]
+    public partial class OpenPosition { }
     public class OpenPositionMetadata
     {
         #region OpenPosition MetaData
@@ -48,9 +50,13 @@ namespace JobBoard.DATA.MVC//.MetaData
         #endregion
     }
 
+    [MetadataType(typeof(PositionMetadata))]
+    public partial class Position { public int LocationId { get { return LocationId; } set { LocationId = new OpenPosition().LocationId; } }
     public class PositionMetadata
     {
-        #region Position MetaData
+
+        #region Position MetaData        
+        public int PositionId { get; set; }
         [Display(Name = "Position Title")]
         [Required]
         public string Title { get; set; }
@@ -61,6 +67,8 @@ namespace JobBoard.DATA.MVC//.MetaData
         public bool? IsOpen { get; set; }
         [Display(Name = "What kind of Position is this?")]
         public string Category { get; set; }
+        [Display(Name ="Position Location")]
+        public int LocationId { get; }
         #endregion
     }
 
