@@ -23,7 +23,7 @@ namespace JobBoard.DATA.MVC
         public int PositionId { get; set; }
         public string Title { get; set; }
         public string JobDescription { get; set; }
-        public Nullable<bool> IsOpen { get; set; }
+        public bool IsOpen { get; set; }
         public string Category { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

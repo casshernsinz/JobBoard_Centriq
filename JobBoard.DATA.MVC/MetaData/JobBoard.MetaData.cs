@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,15 +42,25 @@ namespace JobBoard.DATA.MVC//.MetaData
     public class OpenPositionMetadata
     {
         #region OpenPosition MetaData
+        public int OpenPositionId { get; set; }
+        public int LocationId { get; set; }
         public int PositionId { get; set; }
         #endregion
     }
 
-    public class PositionMetaData
+    public class PositionMetadata
     {
         #region Position MetaData
+        [Display(Name = "Position Title")]
+        [Required]
         public string Title { get; set; }
+        [Display(Name = "Position Duties")]
+        [Required]
         public string JobDescription { get; set; }
+        [Display(Name ="Is there an Open Spot?")]
+        public bool? IsOpen { get; set; }
+        [Display(Name = "What kind of Position is this?")]
+        public string Category { get; set; }
         #endregion
     }
 
