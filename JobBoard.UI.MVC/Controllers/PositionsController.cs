@@ -36,6 +36,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: Positions/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +60,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: Positions/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -75,7 +77,7 @@ namespace JobBoard.UI.MVC.Controllers
 
         // POST: Positions/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PositionId,Title,JobDescription,Category,IsOpen")] Position position)

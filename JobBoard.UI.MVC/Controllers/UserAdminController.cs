@@ -75,6 +75,7 @@ namespace JobBoard.Controllers
         //
         // GET: /Users/Create
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> Create()
         {
             //Get the list of Roles

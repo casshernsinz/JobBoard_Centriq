@@ -28,6 +28,8 @@ namespace JobBoard.DATA.MVC//.MetaData
         #endregion
     }
 
+    [MetadataType(typeof(LocationMetadata))]
+    public partial class Location { }
     public class LocationMetadata
     {
         #region Location MetaData
@@ -51,7 +53,7 @@ namespace JobBoard.DATA.MVC//.MetaData
     }
 
     [MetadataType(typeof(PositionMetadata))]
-    public partial class Position { public int LocationId { get { return LocationId; } set { LocationId = new OpenPositionMetadata().LocationId; } } }
+    public partial class Position { }
     public class PositionMetadata
     {
         #region Position MetaData        

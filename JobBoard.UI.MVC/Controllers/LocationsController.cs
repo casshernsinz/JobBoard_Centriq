@@ -10,6 +10,7 @@ using JobBoard.DATA.MVC;
 
 namespace JobBoard.UI.MVC.Controllers
 {
+    //[Authorize(Users="Admin")]
     public class LocationsController : Controller
     {
         private Job_Board_Entities db = new Job_Board_Entities();
@@ -36,6 +37,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: Locations/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
