@@ -24,9 +24,6 @@
             @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocationId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.IsOpen)
         </th>
         <th></th>
@@ -45,16 +42,16 @@
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LocationId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.IsOpen)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PositionId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.PositionId }) |
                 @if (User.IsInRole("Admin"))
                 {
+                    if (User.IsInRole("Admin") || User.IsInRole("Management"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PositionId }) <span>|</span>
+                    }
                     @Html.ActionLink("Delete", "Delete", new { id = item.PositionId })
                 }
             </td>

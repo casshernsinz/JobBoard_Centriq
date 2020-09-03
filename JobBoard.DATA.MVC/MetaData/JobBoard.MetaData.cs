@@ -51,41 +51,38 @@ namespace JobBoard.DATA.MVC//.MetaData
     }
 
     [MetadataType(typeof(PositionMetadata))]
-    public partial class Position { public int LocationId { get { return LocationId; } set { LocationId = new OpenPosition().LocationId; } } }
-        public class PositionMetadata
-        {
+    public partial class Position { public int LocationId { get { return LocationId; } set { LocationId = new OpenPositionMetadata().LocationId; } } }
+    public class PositionMetadata
+    {
+        #region Position MetaData        
+        public int PositionId { get; set; }
 
-            #region Position MetaData        
-            public int PositionId { get; set; }
+        [Display(Name = "Position Title")]
+        [Required]
+        public string Title { get; set; }
+        [Display(Name = "Position Duties")]
 
-            [Display(Name = "Position Title")]
-            [Required]
-            public string Title { get; set; }
-            [Display(Name = "Position Duties")]
+        public string JobDescription { get; set; }
 
-            public string JobDescription { get; set; }
+        [Display(Name = "Is there an Open Spot?")]
+        [Required]
+        public bool? IsOpen { get; set; }
 
-            [Display(Name = "Is there an Open Spot?")]
-            [Required]
-            public bool? IsOpen { get; set; }
+        [Display(Name = "What kind of Position is this?")]
+        [Required]
+        public string Category { get; set; }
 
-            [Display(Name = "What kind of Position is this?")]
-            [Required]
-            public string Category { get; set; }
+        [Display(Name = "Position Location")]
+        public int LocationId { get; }
+        #endregion
+    }
 
-            [Display(Name = "Position Location")]
-            public int LocationId { get; }
-            #endregion
-        }
-
-        public class UserDetailsMetadata
-        {
-            #region UserDetails MetaData
+    public class UserDetailsMetadata
+    {
+        #region UserDetails MetaData
             public int Id { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
             #endregion
-        }
-
-    
+    }
 }
