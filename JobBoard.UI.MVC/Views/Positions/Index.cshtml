@@ -23,9 +23,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Category)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsOpen)
-        </th>
         <th></th>
     </tr>
 
@@ -40,9 +37,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsOpen)
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", new { id = item.PositionId }) |

@@ -49,7 +49,7 @@ namespace JobBoard.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OpenPositionId,LocationId,PositionId")] OpenPosition openPosition)
+        public ActionResult Create([Bind(Include = "OpenPositionId,LocationId,PositionId,IsOpen")] OpenPosition openPosition)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace JobBoard.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OpenPositionId,LocationId,PositionId")] OpenPosition openPosition)
+        public ActionResult Edit([Bind(Include = "OpenPositionId,LocationId,PositionId,IsOpen")] OpenPosition openPosition)
         {
             if (ModelState.IsValid)
             {

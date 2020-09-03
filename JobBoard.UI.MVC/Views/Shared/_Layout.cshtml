@@ -51,7 +51,7 @@
                         <ul>
                             <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li><a href="#">category</a></li>
+                            <li>@Html.ActionLink("jobs list","Index","OpenPositions")</li>
                             <li>@Html.ActionLink("contact", "Contact", "Home")</li>
                             @if (User.IsInRole("Admin"))
                             {
@@ -63,6 +63,7 @@
                                         <li>@Html.ActionLink("Applications", "Index", "Applications")</li>
                                         <li>@Html.ActionLink("Company Positions", "Index", "Positions")</li>
                                         <li>@Html.ActionLink("Store Locations", "Index", "Locations")</li>
+                                        <li>@Html.ActionLink("Open Positions", "Index", "OpenPositions")</li>
                                     </ul>
                                 </li>
                             }
@@ -73,6 +74,7 @@
                                     <ul class="sub-menu">
                                         <li>@Html.ActionLink("Applications", "Index", "UserDetails")</li>
                                         <li>@Html.ActionLink("Company Positions", "Index", "Positions")</li>
+                                        <li>@Html.ActionLink("Open Positions", "Index", "OpenPositions")</li>
                                     </ul>
                                 </li>
                             }

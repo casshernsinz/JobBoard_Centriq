@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using JobBoard.DATA.MVC;
 
 namespace JobBoard.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PositionsController : Controller
     {
         private Job_Board_Entities db = new Job_Board_Entities();
@@ -36,7 +38,6 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: Positions/Create
-        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,7 +48,7 @@ namespace JobBoard.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PositionId,Title,JobDescription,Category,IsOpen")] Position position)
+        public ActionResult Create([Bind(Include = "PositionId,Title,JobDescription,Category")] Position position)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +81,7 @@ namespace JobBoard.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PositionId,Title,JobDescription,Category,IsOpen")] Position position)
+        public ActionResult Edit([Bind(Include = "PositionId,Title,JobDescription,Category")] Position position)
         {
             if (ModelState.IsValid)
             {

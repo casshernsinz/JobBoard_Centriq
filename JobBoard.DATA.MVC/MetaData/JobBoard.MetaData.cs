@@ -49,6 +49,11 @@ namespace JobBoard.DATA.MVC//.MetaData
         public int OpenPositionId { get; set; }
         public int LocationId { get; set; }
         public int PositionId { get; set; }
+
+        [Display(Name = "Is there an Open Spot?")]
+        [Required]
+        public bool? IsOpen { get; set; }
+
         #endregion
     }
 
@@ -65,10 +70,6 @@ namespace JobBoard.DATA.MVC//.MetaData
         [Display(Name = "Position Duties")]
 
         public string JobDescription { get; set; }
-
-        [Display(Name = "Is there an Open Spot?")]
-        [Required]
-        public bool? IsOpen { get; set; }
 
         [Display(Name = "What kind of Position is this?")]
         [Required]
