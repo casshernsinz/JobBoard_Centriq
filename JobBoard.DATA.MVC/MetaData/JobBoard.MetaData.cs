@@ -73,9 +73,6 @@ namespace JobBoard.DATA.MVC//.MetaData
         [Display(Name = "What kind of Position is this?")]
         [Required]
         public string Category { get; set; }
-
-        [Display(Name = "Position Location")]
-        public int LocationId { get; }
         #endregion
     }
 
