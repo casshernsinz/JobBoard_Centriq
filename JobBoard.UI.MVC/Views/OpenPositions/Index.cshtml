@@ -14,24 +14,26 @@
 }
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Position.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.StoreNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsOpen)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Position.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.StoreNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsOpen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model)
     {
@@ -58,5 +60,12 @@
             </td>
         </tr>
     }
-
 </table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+
+}

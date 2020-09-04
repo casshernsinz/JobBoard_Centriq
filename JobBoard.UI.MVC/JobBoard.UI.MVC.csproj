@@ -291,7 +291,13 @@
     <Content Include="Content\js\jquery-3.4.1.min.js" />
     <Content Include="Content\js\jquery-3.4.1.slim.js" />
     <Content Include="Content\js\jquery-3.4.1.slim.min.js" />
+    <Content Include="Content\js\vendor\jquery.min.map" />
+    <Content Include="Content\js\vendor\jquery.slim.min.map" />
     <None Include="Content\js\jquery.validate-vsdoc.js" />
+    <Content Include="Content\js\vendor\jquery.js" />
+    <Content Include="Content\js\vendor\jquery.min.js" />
+    <Content Include="Content\js\vendor\jquery.slim.js" />
+    <Content Include="Content\js\vendor\jquery.slim.min.js" />
     <Content Include="Content\js\jquery.validate.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
     <Content Include="Content\js\jquery.validate.unobtrusive.js" />
