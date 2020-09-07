@@ -1,6 +1,6 @@
 ﻿@*@model IEnumerable<JobBoard.DATA.MVC.Position>*@
 @model PagedList.IPagedList<JobBoard.DATA.MVC.Position>
-
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Company Positions";
 }
@@ -28,6 +28,12 @@
         <input type="submit" value="Search" class="btn btn-primary" />
     </p>
 }
+
+<section>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("PositionsQS", new { page, currentFilter = ViewBag.CurrentFilter }))
+</section>
 
 @if (Model.Count == 0)
 {
@@ -101,7 +107,7 @@ else
                 //call to AJAX
                 $.ajax({
                     //Call the POST PublisherCreate Action
-                    url:"@Url.Action("PositionCreate","Positions")",
+                    url:"@Url.Action("PositionCreate","Filters")",
                     type: 'POST',
                     //serialized form data
                     data: formData,
