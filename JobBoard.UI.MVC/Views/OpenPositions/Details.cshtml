@@ -4,36 +4,76 @@
     ViewBag.Title = "Job Details";
 }
 
-<h2>@ViewBag.Title</h2>
+@*<h2>@ViewBag.Title</h2>*@
 
 <div>
-    <h4>OpenPosition</h4>
+    <h3>@Html.DisplayFor(model => model.Position.Title), @Html.DisplayFor(model => model.Location.City)</h3>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Location.StoreNumber)
-        </dt>
+        @if (User.IsInRole("Admin") || User.IsInRole("Management"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.StoreNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Location.StoreNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Location.StoreNumber)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location.City)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.State)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location.State)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Position.Title)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Position.Title)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Position.Title)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsOpen)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsOpen)
+            </dd>
+        }
+        else if (User.IsInRole("Employee"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.City)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location.City)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location.State)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location.State)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Position.Title)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Position.Title)
+            </dd>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.Position.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IsOpen)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsOpen)
-        </dd>
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OpenPositionId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@if (User.IsInRole("Admin") || User.IsInRole("Management"))
+{
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.OpenPositionId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
