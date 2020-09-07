@@ -6,9 +6,15 @@
 
 <h2>@ViewBag.Title</h2>
 
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-  </p>*@
+@using (Html.BeginForm("ApplicationsQS", "Filters", FormMethod.Get))
+{
+    <p class="pull-right text-right">
+        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { placeholder = "Search Title" })
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </p>
+}
+
+
 <table class="table">
     <tr>
         <th>

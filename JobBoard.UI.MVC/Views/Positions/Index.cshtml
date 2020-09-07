@@ -8,9 +8,17 @@
 
 @if (User.IsInRole("Admin"))
 {
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <h2>
+        <button id="togglePositionCreate" class="btn btn-primary">
+            Create Position
+        </button>
+    </h2>
+
+    <!--AjaxCreate Form-->
+    <div id="PositionCreate">
+        @*Render a partial view*@
+        @Html.Partial("PositionCreate", new JobBoard.DATA.MVC.Position())
+    </div>
 }
 <table class="table">
     <tr>
@@ -53,3 +61,73 @@
     }
 
 </table>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        //#region AJAX Show Create Form
+
+            //This toggles the end user capatability to see the form
+
+            //When the create publisher button is clicked toggle the create form visibility back on ( it should start hidden)
+            $('#PositionCreate').hide();
+            $('#togglePositionCreate').click(function () {
+                $('#PositionCreate').toggle();
+            //Toggle the text and color of Button
+                if ($('#PositionCreate').is(':visible')) {
+                    $('#togglePositionCreate').html('Cancel')
+                    $('#togglePositionCreate').attr('class', 'btn btn-danger')
+            } else {
+                    $('#togglePositionCreate').html('Create Position')
+                    $('#togglePositionCreate').attr('class', 'btn btn-primary')
+            }
+            });
+
+            //Submit Form
+            $('#PositionCreateForm').submit(function (e) {
+                //Serialize (package the form data for transport as an object)
+                //Create an array of objects with a name and value
+                var formData = $(this).serializeArray();
+                //Interrupt the normal submit event
+                e.preventDefault();
+                //Message the user while processing
+                $('#MessageContent').html('<div class="alert alert-info">Please wait...</div>');
+                //call to AJAX
+                $.ajax({
+                    //Call the POST PublisherCreate Action
+                    url:"@Url.Action("PositionCreate","Filters")",
+                    type: 'POST',
+                    //serialized form data
+                    data: formData,
+                    //sending as Json request
+                    dataType: 'json',
+                    //If it works, show the success message in the <div> located above the RenderBody in the Layout
+                    success: function (data) {
+                    $('#MessageContent').html("<div class='alert alert-success'>Your record was successfully inserted!</div>");
+                    //Clear the form
+                    $('#PositionCreateForm')[0].reset();
+                    //Add the temporary row to the table (remember the browser is begin manually updated so you will see a message to refresh the view to see the links)
+                    //You could code these in, we're leaving out so you can see asynchronous activity
+                    //When the view is refreshed the new record will load into the table with links in the last column
+                    $(function () {
+                        var row = '<tr><td>' + data.PublisherName + '</td><td>' + data.City + '</td><td>' + data.State + '</td><td>Refresh to View Options</td></tr>';//Buttons are not available for this new item
+                        //Add the row to the table
+                        $('#PositionTable').append(row);
+
+                        //close the form and show the create button
+                        $('#PositionCreate').toggle();
+                        $('#togglePositionCreate').html('Create Position')
+                        $('#togglePositionCreate').attr('class', 'btn btn-primary')
+                    });
+                },
+                    //If there is an error, then show the alert message in the div located above the RenderBody
+                    error: function (e) {
+                    $('#MessageContent').html("<div class='alert a;ert-warning'> There was an error. Please try again or contact the site admin.</div>");
+                }
+                });
+            });
+        //#endregion
+    </script>
+
+}

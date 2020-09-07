@@ -16,6 +16,80 @@ namespace JobBoard.UI.MVC.Controllers
     {
         private Job_Board_Entities db = new Job_Board_Entities();
 
+        #region AJAX Delete
+        //Delete Publisher record, return only json data on id and confirmation
+        [HttpPost]
+        public JsonResult PositionDelete(int id)
+        {
+            //Retrieve that publisher from db
+            Position pos = db.Positions.Find(id);
+
+            //Remove the publisher
+            db.Positions.Remove(pos);
+
+            //Save Changes to the DB
+            db.SaveChanges();
+
+            //Create a message to send back to the UI as a JSON result
+            var message = $"Deleted Publisher {pos.PositionId} from the database!";
+            return Json(
+                new
+                {
+                    id = id,
+                    message = message
+                });
+        }
+
+        #endregion
+
+        #region AJAX Details
+        [HttpGet]
+        public PartialViewResult PositionDetails (int id)
+        {
+            //Retrieve the publisher by its id
+            Position pub = db.Positions.Find(id);
+
+            //Return a partial view to the browser with the publisher object
+            return PartialView(pub);
+
+            //Right click and add a partial view
+            //scaffold to details
+            //select partial view
+        }
+
+        #endregion
+
+        #region AJAX Create
+        //Add Publisher to database via AJAX and return results
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult PositionCreate (Position position)
+        {
+            db.Positions.Add(position);
+            db.SaveChanges();
+            return Json(position);
+        }
+
+        #endregion
+
+        #region AJAX Edit - GET (Show the form) and POST (process the form)
+        public PartialViewResult PositionEdit (int id)
+        {
+            Position pos = db.Positions.Find(id);
+            return PartialView(pos);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult AjaxEdit(Position position)
+        {
+            db.Entry(position).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(position);
+        }
+
+        #endregion
+
         // GET: Positions
         public ActionResult Index()
         {
