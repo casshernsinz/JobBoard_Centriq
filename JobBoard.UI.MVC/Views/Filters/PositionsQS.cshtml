@@ -29,63 +29,58 @@
     </p>
 }
 
-<section>
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+   Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("PositionsQS", new { page, currentFilter = ViewBag.CurrentFilter }))
-</section>
+   @Html.PagedListPager(Model, page => Url.Action("PositionsQS", new { page, currentFilter = ViewBag.CurrentFilter }))
 
-@if (Model.Count == 0)
-{
-    <p class="alert alert-warning">
-        No Results meet your criteria
-    </p>
-}
-else
-{
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().JobDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Category)
-            </th>
-            <th></th>
-        </tr>
+   @if (Model.Count == 0)
+   {
+       <p class="alert alert-warning">
+           No Results meet your criteria
+       </p>
+   }
+   else
+   {
+       <table class="table">
+           <tr>
+               <th>
+                   @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
+               </th>
+               <th>
+                   @Html.DisplayNameFor(model => model.FirstOrDefault().JobDescription)
+               </th>
+               <th>
+                   @Html.DisplayNameFor(model => model.FirstOrDefault().Category)
+               </th>
+               <th></th>
+           </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.JobDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-            </tr>
-        }
-    </table>
-}
+           @foreach (var item in Model)
+           {
+               <tr>
+                   <td>
+                       @Html.DisplayFor(modelItem => item.Title)
+                   </td>
+                   <td>
+                       @Html.DisplayFor(modelItem => item.JobDescription)
+                   </td>
+                   <td>
+                       @Html.DisplayFor(modelItem => item.Category)
+                   </td>
+               </tr>
+           }
+       </table>
+   }
 
-@section scripts{
+   @section scripts{
 
-    <script type="text/javascript">
+       <script type="text/javascript">
         //#region AJAX Show Create Form
 
-            //This toggles the end user capatability to see the form
 
-            //When the create publisher button is clicked toggle the create form visibility back on ( it should start hidden)
             $('#PositionCreate').hide();
             $('#togglePositionCreate').click(function () {
                 $('#PositionCreate').toggle();
-            //Toggle the text and color of Button
                 if ($('#PositionCreate').is(':visible')) {
                     $('#togglePositionCreate').html('Cancel')
                     $('#togglePositionCreate').attr('class', 'btn btn-danger')
@@ -97,48 +92,32 @@ else
 
             //Submit Form
             $('#PositionCreateForm').submit(function (e) {
-                //Serialize (package the form data for transport as an object)
-                //Create an array of objects with a name and value
                 var formData = $(this).serializeArray();
-                //Interrupt the normal submit event
                 e.preventDefault();
-                //Message the user while processing
                 $('#MessageContent').html('<div class="alert alert-info">Please wait...</div>');
-                //call to AJAX
                 $.ajax({
-                    //Call the POST PublisherCreate Action
                     url:"@Url.Action("PositionCreate","Filters")",
                     type: 'POST',
-                    //serialized form data
                     data: formData,
-                    //sending as Json request
                     dataType: 'json',
-                    //If it works, show the success message in the <div> located above the RenderBody in the Layout
                     success: function (data) {
                     $('#MessageContent').html("<div class='alert alert-success'>Your record was successfully inserted!</div>");
-                    //Clear the form
                     $('#PositionCreateForm')[0].reset();
-                    //Add the temporary row to the table (remember the browser is begin manually updated so you will see a message to refresh the view to see the links)
-                    //You could code these in, we're leaving out so you can see asynchronous activity
-                    //When the view is refreshed the new record will load into the table with links in the last column
                     $(function () {
-                        var row = '<tr><td>' + data.PublisherName + '</td><td>' + data.City + '</td><td>' + data.State + '</td><td>Refresh to View Options</td></tr>';//Buttons are not available for this new item
-                        //Add the row to the table
+                        var row = '<tr><td>' + data.PublisherName + '</td><td>' + data.City + '</td><td>' + data.State + '</td><td>Refresh to View Options</td></tr>';
                         $('#PositionTable').append(row);
 
-                        //close the form and show the create button
                         $('#PositionCreate').toggle();
                         $('#togglePositionCreate').html('Create Position')
                         $('#togglePositionCreate').attr('class', 'btn btn-primary')
                     });
                 },
-                    //If there is an error, then show the alert message in the div located above the RenderBody
                     error: function (e) {
                     $('#MessageContent').html("<div class='alert a;ert-warning'> There was an error. Please try again or contact the site admin.</div>");
                 }
                 });
             });
         //#endregion
-    </script>
+        </script>
 
-}
+   }
