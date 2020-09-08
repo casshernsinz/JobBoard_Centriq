@@ -1,5 +1,6 @@
 ﻿ using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -7,12 +8,51 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobBoard.DATA.MVC;
+using Microsoft.AspNet.Identity;
 
 namespace JobBoard.UI.MVC.Controllers
 {
     public class OpenPositionsController : Controller
     {
         private Job_Board_Entities db = new Job_Board_Entities();
+
+        public ActionResult Apply(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            OpenPosition openPosition = db.OpenPositions.Find(id);
+            if (openPosition == null)
+            {
+                return HttpNotFound();
+            }
+
+            var userId = User.Identity.GetUserId();
+            if(userId != null)
+            {
+                string userResume = db.UserDetails.Where(db => db.UserId == userId).FirstOrDefault().ResumeFileName;
+                int newStatus = db.ApplicationStatuses.Where(a => a.StatusName == "New").FirstOrDefault().ApplicationStatusId;
+
+                Application newApp = new Application();
+
+                newApp.ApplicationDate = DateTime.Now;
+                newApp.OpenPosition = openPosition;
+                newApp.UserId = userId;
+                newApp.ResumeFileName = userResume;
+                newApp.ApplicationStatusId = newStatus;
+
+                db.Applications.Add(newApp);
+                db.SaveChanges();
+
+                return RedirectToAction("Index", "Applications");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
 
         // GET: OpenPositions
         public ActionResult Index()

@@ -68,13 +68,13 @@
                 else if (User.IsInRole("Employee"))
                 {
                     <div class="template-btn">
-                        @Html.ActionLink("Apply", "Details", new { id = item.OpenPositionId })
+                        <a style="color:black" href="@Url.Action("Apply","OpenPositons", new { id = item.OpenPositionId })">Apply</a>
                     </div>
                 }
                 else
                 {
                     <div class="template-btn">
-                        @Html.ActionLink("Apply", "Details", new { id = item.OpenPositionId })
+                        #
                     </div>
                 }
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionId })*@
@@ -86,6 +86,10 @@
     <script>
         $(document).ready(function () {
             $('.table').DataTable();
+        });
+
+        $(function () {
+            $("#ApplyDate").datepicker();
         });
     </script>
 }

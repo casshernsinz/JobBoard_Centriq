@@ -569,9 +569,11 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Filters\PositionsQS.cshtml" />
     <Content Include="Views\Filters\PositionCreate.cshtml" />
+    <Content Include="Views\OpenPositions\Apply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\uploadedResumes\" />
     <Folder Include="Views\ApplicationStatus\" />
   </ItemGroup>
   <ItemGroup>
