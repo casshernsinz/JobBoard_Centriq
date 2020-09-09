@@ -10,7 +10,7 @@
         <div class="col-md-8">
             <h3 style="font-style:italic">@User.Identity.Name</h3>
             <p class="template-btn">
-                @Html.ActionLink("User Info & Resume Upload","Index","UserDetails")
+                <span style="color:black">@Html.ActionLink("User Info", "Index", "UserDetails")</span>
             </p>
             <p>
                 @(Model.HasPassword ? Html.ActionLink("Change your password", "ChangePassword")

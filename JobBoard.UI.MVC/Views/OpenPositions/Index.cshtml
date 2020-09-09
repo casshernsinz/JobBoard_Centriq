@@ -72,13 +72,24 @@
                     </div>
                 }
                 @*else
-                {
-                    <div class="template-btn" id="Apply">
-                        <a style="color:black" href="@Url.Action("Create","Applications", new { id = item.OpenPositionId })">Apply</a>
-                    </div>
-                }*@
+                    {
+                        <div class="template-btn" id="Apply">
+                            <a style="color:black" href="@Url.Action("Create","Applications", new { id = item.OpenPositionId })">Apply</a>
+                        </div>
+                    }*@
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionId })*@
             </td>
         </tr>
     }
 </table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+        $(function () {
+            $("#ApplyDate").datepicker();
+        });
+    </script>
+} 
