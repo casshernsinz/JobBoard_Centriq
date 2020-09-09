@@ -1,7 +1,9 @@
-﻿using JobBoard.Models;
+﻿using JobBoard.DATA.MVC;
+using JobBoard.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -145,7 +147,7 @@ namespace JobBoard.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase resumeFileName)
         {
             if (ModelState.IsValid)
             {
@@ -153,6 +155,45 @@ namespace JobBoard.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    #region Dealing with Custom UserDetails
+
+                    UserDetail newUserDeets = new UserDetail(); 
+                    newUserDeets.UserId = user.Id; 
+                    newUserDeets.FirstName = model.FirstName; 
+                    newUserDeets.LastName = model.LastName; 
+                    newUserDeets.ResumeFileName = model.ResumeFileName;//--TODO: handle file uploadFsdpEntities
+
+                    #region FileUpload
+
+                    string applicationName = "No Resume Submitted";
+
+                    if (resumeFileName != null)
+                    {
+                        applicationName = resumeFileName.FileName;
+
+                        string ext = applicationName.Substring(applicationName.LastIndexOf(".")); // return .extension
+                        string[] goodExts = new string[] { ".pdf", ".doc" };
+                        if (goodExts.Contains(ext.ToLower()))
+                        {
+                            applicationName = Guid.NewGuid() + ext;
+
+                            resumeFileName.SaveAs(Server.MapPath("~/Content/uploadedResumes/" + applicationName));
+                        }
+
+                        else
+                        {
+                            applicationName = "No Resume Submitted";
+                        }
+                    }
+
+                    #endregion
+
+                    Job_Board_Entities db = new Job_Board_Entities();
+                    db.UserDetails.Add(newUserDeets);
+                    db.SaveChanges();
+
+                    #endregion
+
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");

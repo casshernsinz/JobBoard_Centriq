@@ -68,15 +68,15 @@
                 else if (User.IsInRole("Employee"))
                 {
                     <div class="template-btn">
-                        <a style="color:black" href="@Url.Action("Create","Applications", new { id = item.OpenPositionId })">Apply</a>
+                        <a style="color:black" href="@Url.Action("Apply","OpenPositions", new { id = item.OpenPositionId })">Apply</a>
                     </div>
                 }
-                else
+                @*else
                 {
                     <div class="template-btn" id="Apply">
                         <a style="color:black" href="@Url.Action("Create","Applications", new { id = item.OpenPositionId })">Apply</a>
                     </div>
-                }
+                }*@
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionId })*@
             </td>
         </tr>

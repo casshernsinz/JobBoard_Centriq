@@ -52,7 +52,7 @@
                         <span></span>
                     </div>
                     <div class="main-menu">
-                        @Html.Partial("_LoginPartial")
+                        @*@Html.Partial("_LoginPartial")*@
                         <ul>
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -88,6 +88,19 @@
                             {
                                 <li>@Html.ActionLink("jobs list", "Index", "OpenPositions")</li>
                             }
+                          @* <li><span>@Html.Partial("_LoginPartial")</span></li>*@
+                            @if (Request.IsAuthenticated)
+                             {
+                                 <li>
+                                     @Html.ActionLink("Account Settings", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                 </li>
+                                 <li>@Html.Partial("_LoginPartial")</li>
+                             }
+                             else
+                             {
+                                 <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                 <li class="template-btn">@Html.ActionLink("Sign-Up", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                             }
                         </ul>
                     </div>
                 </div>

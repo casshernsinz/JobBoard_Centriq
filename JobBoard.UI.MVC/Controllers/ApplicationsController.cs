@@ -56,43 +56,26 @@ namespace JobBoard.UI.MVC.Controllers
             {
                 #region FileUpload
 
-                //Provide a default value in case the user does NOT provide an image
                 string applicationName = "No Resume Submitted";
 
-                //Check the input and process if its value is NOT null
                 if (resumeUpload != null)
                 {
-                    //Get the file name and save it to a variable (resuse the string declared for default)
                     applicationName = resumeUpload.FileName;
-                    //Use the fileName and extract the Extension and save it to a variable (important for images)
 
-                    //Create a List of valid extensions
                     string ext = applicationName.Substring(applicationName.LastIndexOf(".")); // return .extension
-                    //Compare our extension to the List
                     string[] goodExts = new string[] { ".pdf", ".doc" };
-                    //If we have a VALID extension:
                     if (goodExts.Contains(ext.ToLower()))
                     {
-                        //rename the file (conventially we do a guid) - if you need something more descriptive you can dynamically create a unique value
-                        //You could take part of the book title and concatenate with DateTime.Now OR you could use part of the userID to define
-                        //  --(if you go to these routes, make sure your datatype in SQL is big enough to accept it)
-                        //EX: imageName = book.BookTitle.Substring(0,20) +DateTime.Now + ext; //20 chars of the Title plus the DateTime stamp
-
-                        //Here use the GUID (Global Unique Identifier)
                         applicationName = Guid.NewGuid() + ext;
 
-                        //Save the image file to the webserver
                         resumeUpload.SaveAs(Server.MapPath("~/Content/uploadedResumes/" + applicationName));
                     }
 
-                    //Invalid extension, default back to the default NoImage.png
                     else
                     {
                         applicationName = "No Resume Submitted";
                     }
                 }
-                //No matter whether the file upload has a file in it or NOT, update the DB
-                //  --with the correct imageName for the record
                 application.ResumeFileName = applicationName;
 
                 #endregion

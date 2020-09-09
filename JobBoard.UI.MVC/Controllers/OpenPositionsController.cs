@@ -17,13 +17,6 @@ namespace JobBoard.UI.MVC.Controllers
         private Job_Board_Entities db = new Job_Board_Entities();
 
         #region Apply
-        public ActionResult Apply()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Apply(int? id)
         {
             if (id == null)

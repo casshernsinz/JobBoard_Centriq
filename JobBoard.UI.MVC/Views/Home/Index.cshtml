@@ -13,7 +13,7 @@
                 <div class="banner-text">
                     <h1>find your dream <span>job</span> with comport</h1>
                     <p class="py-3">Apply to our company by signing in <a href="@Url.Action("Register","Account")">here</a> and utilizing our fast one-click apply! Or you can log in and start searching right now!</p>
-                    <span class="template-btn"><a style="color:black" href="@Url.Action("Index", "OpenPositions")"</a>Explore Now</span>
+                    <span class="template-btn"><a style="color:black" href="@Url.Action("Index", "OpenPositions")" />Explore Now</span>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
 </section>
 <!-- Banner Area End -->
 <!-- Search Area Starts -->
-<div class="search-area">
+@*<div class="search-area">
     <div class="search-bg">
         <div class="container">
             <div class="row">
@@ -48,13 +48,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <!-- Search Area End -->
-
-@section scripts{
-    <script>
-        $(document).ready(function () {
-            $('.table').DataTable();
-        });
-    </script>
-}
