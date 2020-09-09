@@ -32,5 +32,6 @@ namespace JobBoard.DATA.MVC
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
@@ -16,6 +16,14 @@ namespace JobBoard.UI.MVC.Controllers
     {
         private Job_Board_Entities db = new Job_Board_Entities();
 
+        #region Apply
+        public ActionResult Apply()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Apply(int? id)
         {
             if (id == null)
@@ -24,13 +32,14 @@ namespace JobBoard.UI.MVC.Controllers
             }
 
             OpenPosition openPosition = db.OpenPositions.Find(id);
+
             if (openPosition == null)
             {
                 return HttpNotFound();
             }
 
             var userId = User.Identity.GetUserId();
-            if(userId != null)
+            if (userId != null)
             {
                 string userResume = db.UserDetails.Where(db => db.UserId == userId).FirstOrDefault().ResumeFileName;
                 int newStatus = db.ApplicationStatuses.Where(a => a.StatusName == "New").FirstOrDefault().ApplicationStatusId;
@@ -53,14 +62,18 @@ namespace JobBoard.UI.MVC.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
+        #endregion
 
+        #region OpenPositions Index
         // GET: OpenPositions
         public ActionResult Index()
         {
             var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
             return View(openPositions.ToList());
         }
+        #endregion
 
+        #region Details
         // GET: OpenPositions/Details/5
         public ActionResult Details(int? id)
         {
@@ -75,7 +88,9 @@ namespace JobBoard.UI.MVC.Controllers
             }
             return View(openPosition);
         }
+        #endregion
 
+        #region Create GET&POST
         // GET: OpenPositions/Create
         public ActionResult Create()
         {
@@ -102,7 +117,9 @@ namespace JobBoard.UI.MVC.Controllers
             ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
             return View(openPosition);
         }
+        #endregion
 
+        #region EDIT GET&POST
         // GET: OpenPositions/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -137,7 +154,9 @@ namespace JobBoard.UI.MVC.Controllers
             ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
             return View(openPosition);
         }
+        #endregion
 
+        #region Delete GET&POST
         // GET: OpenPositions/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -163,6 +182,7 @@ namespace JobBoard.UI.MVC.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

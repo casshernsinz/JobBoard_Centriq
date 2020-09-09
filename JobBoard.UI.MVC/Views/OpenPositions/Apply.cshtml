@@ -1,2 +1,37 @@
 ﻿@model JobBoard.DATA.MVC.OpenPosition
 
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "ApplicationCreateForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.OpenPositionId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Position.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div>
+                @Html.EditorFor(model => model.Position.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Position.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Position.Category, new { htmlAttributes = new { @class = "form-control", placeholder = "City" } })
+            @Html.ValidationMessageFor(model => model.Position.Category, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.Position.JobDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "State" } })
+            @Html.ValidationMessageFor(model => model.Position.JobDescription, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-1">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

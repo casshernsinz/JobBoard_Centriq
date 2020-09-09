@@ -6,20 +6,6 @@
 
 <h2>@ViewBag.Title</h2>
 
-@if (User.IsInRole("Admin"))
-{
-    <h2>
-        <button id="togglePositionCreate" class="btn btn-primary">
-            Create Position
-        </button>
-    </h2>
-
-    <!--AjaxCreate Form-->
-    <div id="PositionCreate">
-        @*Render a partial view*@
-        @Html.Partial("PositionCreate", new JobBoard.DATA.MVC.Position())
-    </div>
-}
 <table class="table">
     <tr>
         <th>

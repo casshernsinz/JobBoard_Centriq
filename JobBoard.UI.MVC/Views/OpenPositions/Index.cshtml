@@ -40,7 +40,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr id="Position-@item.PositionId">
             <td>
                 @Html.DisplayFor(modelItem => item.Position.Title)
             </td>
@@ -68,13 +68,13 @@
                 else if (User.IsInRole("Employee"))
                 {
                     <div class="template-btn">
-                        <a style="color:black" href="@Url.Action("Apply","OpenPositons", new { id = item.OpenPositionId })">Apply</a>
+                        <a style="color:black" href="@Url.Action("Create","Applications", new { id = item.OpenPositionId })">Apply</a>
                     </div>
                 }
                 else
                 {
-                    <div class="template-btn">
-                        #
+                    <div class="template-btn" id="Apply">
+                        <a style="color:black" href="@Url.Action("Create","Applications", new { id = item.OpenPositionId })">Apply</a>
                     </div>
                 }
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionId })*@
@@ -82,14 +82,3 @@
         </tr>
     }
 </table>
-@section scripts{
-    <script>
-        $(document).ready(function () {
-            $('.table').DataTable();
-        });
-
-        $(function () {
-            $("#ApplyDate").datepicker();
-        });
-    </script>
-}

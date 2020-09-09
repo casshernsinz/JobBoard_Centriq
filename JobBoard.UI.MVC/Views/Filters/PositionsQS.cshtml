@@ -75,49 +75,49 @@
    @section scripts{
 
        <script type="text/javascript">
-        //#region AJAX Show Create Form
+            //#region AJAX Show Create Form
 
 
-            $('#PositionCreate').hide();
-            $('#togglePositionCreate').click(function () {
-                $('#PositionCreate').toggle();
-                if ($('#PositionCreate').is(':visible')) {
-                    $('#togglePositionCreate').html('Cancel')
-                    $('#togglePositionCreate').attr('class', 'btn btn-danger')
-            } else {
-                    $('#togglePositionCreate').html('Create Position')
-                    $('#togglePositionCreate').attr('class', 'btn btn-primary')
-            }
-            });
-
-            //Submit Form
-            $('#PositionCreateForm').submit(function (e) {
-                var formData = $(this).serializeArray();
-                e.preventDefault();
-                $('#MessageContent').html('<div class="alert alert-info">Please wait...</div>');
-                $.ajax({
-                    url:"@Url.Action("PositionCreate","Filters")",
-                    type: 'POST',
-                    data: formData,
-                    dataType: 'json',
-                    success: function (data) {
-                    $('#MessageContent').html("<div class='alert alert-success'>Your record was successfully inserted!</div>");
-                    $('#PositionCreateForm')[0].reset();
-                    $(function () {
-                        var row = '<tr><td>' + data.PublisherName + '</td><td>' + data.City + '</td><td>' + data.State + '</td><td>Refresh to View Options</td></tr>';
-                        $('#PositionTable').append(row);
-
-                        $('#PositionCreate').toggle();
+                $('#PositionCreate').hide();
+                $('#togglePositionCreate').click(function () {
+                    $('#PositionCreate').toggle();
+                    if ($('#PositionCreate').is(':visible')) {
+                        $('#togglePositionCreate').html('Cancel')
+                        $('#togglePositionCreate').attr('class', 'btn btn-danger')
+                } else {
                         $('#togglePositionCreate').html('Create Position')
                         $('#togglePositionCreate').attr('class', 'btn btn-primary')
-                    });
-                },
-                    error: function (e) {
-                    $('#MessageContent').html("<div class='alert a;ert-warning'> There was an error. Please try again or contact the site admin.</div>");
                 }
                 });
-            });
-        //#endregion
+
+                //Submit Form
+                $('#PositionCreateForm').submit(function (e) {
+                    var formData = $(this).serializeArray();
+                    e.preventDefault();
+                    $('#MessageContent').html('<div class="alert alert-info">Please wait...</div>');
+                    $.ajax({
+                        url:"@Url.Action("PositionCreate","Filters")",
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'json',
+                        success: function (data) {
+                        $('#MessageContent').html("<div class='alert alert-success'>Your record was successfully inserted!</div>");
+                        $('#PositionCreateForm')[0].reset();
+                        $(function () {
+                            var row = '<tr><td>' + data.PublisherName + '</td><td>' + data.City + '</td><td>' + data.State + '</td><td>Refresh to View Options</td></tr>';
+                            $('#PositionTable').append(row);
+
+                            $('#PositionCreate').toggle();
+                            $('#togglePositionCreate').html('Create Position')
+                            $('#togglePositionCreate').attr('class', 'btn btn-primary')
+                        });
+                    },
+                        error: function (e) {
+                        $('#MessageContent').html("<div class='alert a;ert-warning'> There was an error. Please try again or contact the site admin.</div>");
+                    }
+                    });
+                });
+            //#endregion
         </script>
 
    }

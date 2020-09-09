@@ -65,6 +65,9 @@
     <Compile Include="ApplicationStatus.cs">
       <DependentUpon>JobBoard_MetaData.tt</DependentUpon>
     </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>JobBoard_MetaData.tt</DependentUpon>
+    </Compile>
     <Compile Include="JobBoard_MetaData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,7 +116,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\PagedList.css" />
     <Content Include="JobBoard_MetaData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>JobBoard_MetaData.edmx</DependentUpon>
