@@ -57,7 +57,7 @@ namespace JobBoard.UI.MVC.Controllers
 
         #endregion
 
-        #region AJAX Create
+        #region AJAX Create - Positions
         //Add Publisher to database via AJAX and return results
         [HttpPost]
         [ValidateAntiForgeryToken]
