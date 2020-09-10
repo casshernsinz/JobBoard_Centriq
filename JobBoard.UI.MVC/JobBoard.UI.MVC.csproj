@@ -311,6 +311,8 @@
     <Content Include="Content\css\bootstrap-reboot.css.map" />
     <Content Include="Content\css\bootstrap-grid.min.css.map" />
     <Content Include="Content\css\bootstrap-grid.css.map" />
+    <Content Include="Content\Avery Hall Resume.pdf" />
+    <Content Include="Content\JobBoard Documentation.pdf" />
     <None Include="Content\js\jquery-3.4.1.intellisense.js" />
     <Content Include="Content\js\jquery-3.4.1.js" />
     <Content Include="Content\js\jquery-3.4.1.min.js" />
@@ -400,9 +402,6 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\uploadedResumes\021470ca-7ad3-42df-aaf4-cd75935eeb50.pdf" />
-    <Content Include="Content\uploadedResumes\6fe8194a-4744-4cd5-b29e-a76c8efa7ba8.pdf" />
-    <Content Include="Content\uploadedResumes\7ac1cb1e-25c7-46fb-912f-c6e3ac81c240.PDF" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -577,6 +576,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\uploadedResumes\" />
     <Folder Include="Views\ApplicationStatus\" />
   </ItemGroup>
   <ItemGroup>
