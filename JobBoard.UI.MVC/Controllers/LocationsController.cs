@@ -10,7 +10,6 @@ using JobBoard.DATA.MVC;
 
 namespace JobBoard.UI.MVC.Controllers
 {
-    //[Authorize(Users="Admin")]
     public class LocationsController : Controller
     {
         private Job_Board_Entities db = new Job_Board_Entities();
@@ -37,7 +36,7 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: Locations/Create
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +45,7 @@ namespace JobBoard.UI.MVC.Controllers
         // POST: Locations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LocationId,StoreNumber,City,State,ManagerId")] Location location)

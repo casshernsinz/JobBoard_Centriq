@@ -135,7 +135,6 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: Positions/Edit/5
-        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)

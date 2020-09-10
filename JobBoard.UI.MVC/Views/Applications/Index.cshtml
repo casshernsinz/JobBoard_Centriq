@@ -6,48 +6,47 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("ApplicationsQS", "Filters", FormMethod.Get))
-{
-    <p class="pull-right text-right">
-        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { placeholder = "Search Title" })
-        <input type="submit" value="Search" class="btn btn-primary" />
-    </p>
-}
-
-
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationDate)
-        </th>
-        @if (User.IsInRole("Admin") || User.IsInRole("Management"))
-        {
+    <thead>
+        <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ManagerNotes)
+                @Html.DisplayNameFor(model => model.OpenPosition.Position.Title)
             </th>
-        }
-        @*<th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDate)
+            </th>
+            @if (User.IsInRole("Admin") || User.IsInRole("Management"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.ManagerNotes)
+                </th>
+            }
+            @*<th>
                 @Html.DisplayNameFor(model => model.ResumeFileName)
             </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationStatus.StatusName)
-        </th>
-        @*<th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationStatus.StatusName)
+            </th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.OpenPosition.OpenPositionId)
             </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.LastName)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserDetail.LastName)
+            </th>
 
-        <th></th>
-    </tr>
+            <th></th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ApplicationDate)
             </td>
@@ -85,3 +84,13 @@
     }
 
 </table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+        $(function () {
+            $("#ApplyDate").datepicker();
+        });
+    </script>
+} 

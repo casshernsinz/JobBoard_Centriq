@@ -125,7 +125,7 @@ namespace JobBoard.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "StoreNumber", openPosition.LocationId);
+            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "City", openPosition.LocationId);
             ViewBag.PositionId = new SelectList(db.Positions, "PositionId", "Title", openPosition.PositionId);
             return View(openPosition);
         }

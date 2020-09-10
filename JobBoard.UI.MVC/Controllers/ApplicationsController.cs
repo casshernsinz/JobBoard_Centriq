@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobBoard.DATA.MVC;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace JobBoard.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin,Management")]
     public class ApplicationsController : Controller
     {
         private Job_Board_Entities db = new Job_Board_Entities();

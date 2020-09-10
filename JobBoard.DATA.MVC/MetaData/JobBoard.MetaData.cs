@@ -17,7 +17,8 @@ namespace JobBoard.DATA.MVC//.MetaData
         public int OpenPositionId { get; set; }
 
         [Required(ErrorMessage = "Please Fill Out Today's Date")]
-        [Display(Name = "Today's Date")]
+        [Display(Name = "Application Date")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime ApplicationDate { get; set; }
 
 
