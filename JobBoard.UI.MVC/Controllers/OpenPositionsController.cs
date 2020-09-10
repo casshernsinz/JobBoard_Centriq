@@ -48,7 +48,7 @@ namespace JobBoard.UI.MVC.Controllers
                 db.Applications.Add(newApp);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "Applications");
+                return RedirectToAction("Index", "OpenPositions");
             }
             else
             {
