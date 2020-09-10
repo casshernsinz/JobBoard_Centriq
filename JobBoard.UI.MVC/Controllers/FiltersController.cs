@@ -58,7 +58,6 @@ namespace JobBoard.UI.MVC.Controllers
         #endregion
 
         #region AJAX Create - Positions
-        //Add Publisher to database via AJAX and return results
         [HttpPost]
         [ValidateAntiForgeryToken]
         public JsonResult PositionCreate(Position position)
@@ -101,14 +100,11 @@ namespace JobBoard.UI.MVC.Controllers
         {
             if (String.IsNullOrEmpty(searchFilter))
             {
-                //If optional search isn't used, return all records
 
                 return View(db.Applications.ToList());
             }
             else
             {
-                //If optional search is used, compare it to the first and last name. Use Linq
-                //This is a Method example, below this is a Keyword Syntax example
                 string searchUpCase = searchFilter.ToUpper();
                 List<Application> searchResults = db.Applications
                                              .Where(a => a.UserDetail.FirstName.ToUpper().Contains(searchUpCase)
@@ -119,54 +115,13 @@ namespace JobBoard.UI.MVC.Controllers
                                              .ThenBy(a => a.OpenPosition.Position.Category)
                                              .ToList();
 
-                //Method syntax example above Or Query syntax example below
-                //List<Application> searchResult2 = 
-                //                              (from a in db.Authors
-                //                              where a.FirstName.ToUpper().Contains(searchUpCase) ||
-                //                              a.LastName.ToUpper().Contains(searchUpCase)
-                //                              orderby a.FirstName, a.LastName
-                //                              select a).ToList();
                 return View(searchResults);
             }
         }
-
-        //public ActionResult OpenPositionsQS (string searchFilter)
-        //{
-        //    if (String.IsNullOrEmpty(searchFilter))
-        //    {
-        //        return View(db.OpenPositions.ToList());
-        //    }
-        //    else
-        //    {
-        //        string searchUpCase = searchFilter.ToUpper();
-        //        List<OpenPosition> searchResults = db.OpenPositions
-        //                                     .Where(m => m.Location)
-        //                                     .OrderBy(m => m.Location)
-        //                                     .ThenBy(m => m.IsOpen)
-        //                                     .ToList();
-
-        //        return View(searchResults);
-        //    }
-        //}
-        //}
-
         public ActionResult PositionsQS (string searchString, string currentFilter, int page = 1)
         {
             int pageSize = 5;
             var jobs = db.Positions.OrderBy(b => b.Title).ToList();
-
-            #region Search With Paging Notes
-            //We are tracking it's a new search(Go To Page 1 with results)
-            //or if it's a previous search(track with current filter and use paging based on the last request)
-            /*
-             * In the Action-
-             * SearchString only gets assigned new searches
-             * If searchString has a value, then it is a search - update the page to 1(first page of results)
-             * Else if searchString is null, assign searchString to use the currentFilter value ( either null/empty OR previously tracked old search)
-             * 
-             */
-
-            #endregion
 
             if (searchString != null)
             {
@@ -177,8 +132,6 @@ namespace JobBoard.UI.MVC.Controllers
                 searchString = currentFilter;
             }
 
-            //Check if the searchString is not null or empty.
-            //If it is NOT null use the filter to grab the new data set
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -190,7 +143,6 @@ namespace JobBoard.UI.MVC.Controllers
                          select j).ToList();
             }
 
-            //Set up a ViewBag variable for passing currentFilter based on whatever searchString is now
             ViewBag.CurrentFilter = searchString;
 
             return View(jobs.ToPagedList(page, pageSize));
