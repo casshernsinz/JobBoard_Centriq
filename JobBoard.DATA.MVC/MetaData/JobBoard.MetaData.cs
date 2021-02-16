@@ -21,7 +21,6 @@ namespace JobBoard.DATA.MVC//.MetaData
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime ApplicationDate { get; set; }
 
-
         public string ManagerNotes { get; set; }
 
 

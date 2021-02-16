@@ -43,14 +43,14 @@
                 @Html.DisplayFor(modelItem => item.ResumeFileName)
                 ((Resume))
             </td>
-            @if (User.IsInRole("Admin"))
+            @*@if (User.IsInRole("Admin"))
             {
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
                     @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
                 </td>
-            }
+            }*@
             <td></td>
         </tr>
     }
